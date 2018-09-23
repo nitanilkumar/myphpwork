@@ -11,6 +11,13 @@ class database
   {
 	  return mysqli_query($this->connection,$sql);
   }
+  
+  public function count()
+  {
+		global $dbobject;
+		return mysqli_num_rows($dbobject->stmt);
+  }
+  
 }
 $database= new database();
 ?>

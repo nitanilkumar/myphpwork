@@ -2,7 +2,7 @@
 class dbobject
 {
  
-  public $email; public $name; public $pwd;
+  public $email; public $name; public $pwd; public $stmt;
   function create()
   {
 	  global $database;
@@ -11,11 +11,19 @@ class dbobject
 	  
   }
   
-  function redirect()
+  function redirect($page)
   {
 	         echo"<script>location.href='".$page."';</script>";
   }
   
+  function auth()
+  {
+	  global $database;$sql="SELECT * FROM `reg` WHERE `email`='".$this->email ."'  and  `pwd`= '".$this->pwd ."' ";
+	$this->stmt=$database->query($sql);
+	return $database->count();
+  }
+  
+ 
 }
 
 $dbobject=new dbobject();
