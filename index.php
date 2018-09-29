@@ -2,24 +2,27 @@
 require("init.php");
 if(isset($_POST['submit']))
 {
-$dbobject->email=trim($_POST['email']);
-$dbobject->name=trim($_POST['name']);
-$dbobject->pwd=	trim($_POST['pwd']);
-$dbobject->create(trim($_POST['name']),trim($_POST['pwd']));
-$dbobject->redirect("index.php");
+	$dbobject->email=trim($_POST['email']);
+	$dbobject->name=trim($_POST['name']);
+	$dbobject->pwd=	trim($_POST['pwd']);
+	$dbobject->create();
+	$dbobject->page="index.php";
+	$dbobject->redirect();
 }
 
 else if(isset($_POST['Login']))
 {
-	$dbobject->email=trim($_POST['email']);$dbobject->pwd=	trim($_POST['pwd']);
+	$dbobject->email=trim($_POST['email']);
+	$dbobject->pwd=	trim($_POST['pwd']);
 	if($dbobject->auth()==1)
 	{
 			$dbobject->redirect("home.php");
+			$dbobject->redirect();
 	}
 	else
 	{
-			echo"kdsnfkj";
-		//$dbobject->redirect("index.php");
+		$dbobject->redirect("index.php");
+		$dbobject->redirect();
 	}
 	
 }
@@ -48,8 +51,9 @@ else if(isset($_POST['Login']))
 <td><br/> <br/> Password : </td>
 <td><br/> <br/><input type="password" name="pwd" placeholder="Password"    /> </td>
 </tr>
-<tr>
-<td><input type="submit" name="submit" value="submit"    /> </td>
+<tr> 
+<td><input type="submit" name="submit" /> </td>
+
 </tr>
 
 </table>
